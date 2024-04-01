@@ -1,6 +1,5 @@
-# Live coding @ Paris Grosse Conf 2024
-
-This repository contains the code used for the live conding workshop : "Vector database for an advanced search engine"
+# Live coding @ Pycon Lithuania 2024
+This repository contains the code used for the live coding workshop : ["Coding a vector database from scratch"](https://pycon.lt/2024/talks/VTKGSM)
 
 ![Images tree description](data/assets/demo.gif)
 
@@ -47,7 +46,7 @@ Or if you want to use HNSW lib
 
 ## Need Help ? 
 
-You can reach me at philippe.stepniewski@octo.com
+You can reach us at aurelien.massiot@octo.com or philippe.stepniewski@octo.com
 
 ## Credits
 
