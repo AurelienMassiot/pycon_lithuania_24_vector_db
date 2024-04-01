@@ -24,33 +24,32 @@ st.session_state["k"] = 20
 VDB_IM, FCLIP, SEG = init_streamlit(hnsw)
 
 st.set_page_config(layout="wide")
-st.title("MOTEUR DE RECHERCHE MULTI-MODAL")
+st.title("MULTI-MODAL SEARCH ENGINE")
 
 set_style_css(30, 25)
 
 with st.sidebar:
     st.image(GC_LOGO_PATH, width=300)
-    query_text = st.text_input(label="**Votre requête:**")
+    query_text = st.text_input(label="**Your request:**")
     if hasattr(VDB_IM, 'query_with_kmeans'):
-        st.checkbox("**Utiliser l'index inversé**", key="use_ivf")
+        st.checkbox("**Use inverted file index**", key="use_ivf")
         if st.session_state["use_ivf"]:
-            st.number_input("**Nombre de sondes:**", key="n_probes", value=1, step=1)
+            st.number_input("**Number of probes:**", key="n_probes", value=1, step=1)
 
         if st.session_state["use_ivf"]:
-            st.number_input("**Nombre de clusters:**", key="n_clusters", value=10, step=1)
-            reindex = st.button("Ré-indexer")
+            st.number_input("**Number of clusters:**", key="n_clusters", value=10, step=1)
+            reindex = st.button("Re-index")
             if reindex:
                 VDB_IM.inverted_index = {}
                 VDB_IM.init_kmeans_index(nb_clusters=st.session_state["n_clusters"])
                 st.write(len(VDB_IM.inverted_index))
-    button = st.button("Rechercher")
 
-tab1, tab2 = st.tabs(["Texte", "Image"])
+tab1, tab2 = st.tabs(["Text", "Image"])
 use_ivf = st.session_state["use_ivf"] if "use_ivf" in st.session_state else False
 with tab1:
-    if button:
+    if query_text != "":
         logger.info(f"Performing query with {hnsw}" + str(st.session_state["VDB_NMS"]))
-        logger.info(f"Requête {query_text} ")
+        logger.info(f"Request {query_text} ")
         translated_query_text = translate_query(query_text)
         logger.info(f"Translated {query_text} to {translated_query_text}")
 
