@@ -3,7 +3,7 @@ import sys
 
 import streamlit as st
 
-from gc_db.config import GC_LOGO_PATH
+from gc_db.config import GC_LOGO_PATH, PYCON_LOGO_PATH
 from gc_db.streamlit.init_db_st import init_streamlit
 from gc_db.streamlit.st_creators import image_as_query, set_style_css
 from gc_db.streamlit.st_utils import perform_query, translate_query
@@ -29,7 +29,7 @@ st.title("MULTI-MODAL SEARCH ENGINE")
 set_style_css(30, 25)
 
 with st.sidebar:
-    st.image(GC_LOGO_PATH, width=300)
+    st.image(PYCON_LOGO_PATH, width=200)
     query_text = st.text_input(label="**Your request:**")
     if hasattr(VDB_IM, 'query_with_kmeans'):
         st.checkbox("**Use inverted file index**", key="use_ivf")
