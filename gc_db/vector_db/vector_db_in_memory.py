@@ -62,6 +62,10 @@ if __name__ == "__main__":
     from gc_db.config import DICT_IDS_EMBEDDINGS_PATH
     from fashion_clip.fashion_clip import FashionCLIP
 
+    from threadpoolctl import threadpool_info
+
+    print("threadpool info", threadpool_info())
+
     logging.basicConfig(level=logging.INFO)
     logger = logging.getLogger(__name__)
     logger.info("Starting Main")
@@ -96,7 +100,7 @@ if __name__ == "__main__":
 
     if hasattr(VDB_IM, 'query_with_kmeans'):
         start = time.time()
-        nn = VDB_IM.query_with_kmeans(embeded_query,n_probes=3)
+        nn = VDB_IM.query_with_kmeans(embeded_query, n_probes=3)
         end = time.time()
         lasted = np.round(end - start, 3)
         logger.info("Time elapsed with IVF search:" + str(lasted))
